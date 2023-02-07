@@ -19,7 +19,6 @@ function App() {
         setLoading(false);
         setList(res.data.items);
         setRepo("");
-        console.log('here')
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +40,7 @@ function App() {
           <CardList list={list} />
         </div>
       )}
+      {list.length === 0 && <p>No Repo is available</p>}
       </div>
     </div>
   );
