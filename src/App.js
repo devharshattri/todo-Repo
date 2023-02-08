@@ -1,7 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import CardList from "./components/CardList";
-import "./App.css";
+// import "./App.css";
+import {
+  StyledFormContainer,
+  FormInput,
+  FormButton,
+  Styledh2,
+} from "./App.style";
 
 function App() {
   const [repo, setRepo] = useState("");
@@ -27,22 +33,22 @@ function App() {
 
   return (
     <div>
-      <div className="form-container">
+      {/* <div className="form-container"> */}
+      <StyledFormContainer>
         <form className="form" onSubmit={getList}>
-          <input value={repo} onChange={(e) => setRepo(e.target.value)} />
-          <button className="form-btn" type="submit">
-            Find Repo
-          </button>
+          <FormInput value={repo} onChange={(e) => setRepo(e.target.value)} />
+          <FormButton type="submit">Find Repo</FormButton>
         </form>
         {isloading && <p>Loading...</p>}
         {list.length !== 0 && (
           <div>
-            <h2>Repos</h2>
+            <Styledh2>Repos</Styledh2>
             <CardList list={list} />
           </div>
         )}
         {list.length === 0 && <p>No Repo is available</p>}
-      </div>
+        {/* </div> */}
+      </StyledFormContainer>
     </div>
   );
 }
