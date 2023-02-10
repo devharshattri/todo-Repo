@@ -10,6 +10,10 @@ export const StyledFormContainer = styled.div`
 export const FormInput = styled.input`
   width: 300px;
   font-size: large;
+  &:placeholder-shown {
+    font-style: italic;
+    font-size: medium;
+  }
 `;
 
 export const FormButton = styled.button`

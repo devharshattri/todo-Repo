@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import CardList from "./components/CardList";
 // import "./App.css";
 import {
@@ -9,12 +9,12 @@ import {
   Styledh2,
 } from "./App.style";
 
-function App() {
-  const [repo, setRepo] = useState("");
-  const [list, setList] = useState([]);
-  const [isloading, setLoading] = useState(false);
+const App:FC = ()=> {
+  const [repo, setRepo] = useState<string>("");
+  const [list, setList] = useState<[]>([]);
+  const [isloading, setLoading] = useState<boolean>(false);
 
-  const getList = async (e) => {
+  const getList = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setLoading(true);
     setList([]);
@@ -33,10 +33,9 @@ function App() {
 
   return (
     <div>
-      {/* <div className="form-container"> */}
       <StyledFormContainer>
         <form className="form" onSubmit={getList}>
-          <FormInput value={repo} onChange={(e) => setRepo(e.target.value)} />
+          <FormInput placeholder='Enter repository name' value={repo} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRepo(event.target.value)} />
           <FormButton type="submit">Find Repo</FormButton>
         </form>
         {isloading && <p>Loading...</p>}
@@ -47,7 +46,6 @@ function App() {
           </div>
         )}
         {list.length === 0 && <p>No Repo is available</p>}
-        {/* </div> */}
       </StyledFormContainer>
     </div>
   );
