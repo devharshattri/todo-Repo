@@ -6,8 +6,24 @@ import {
   RepoImg,
 } from "./CardList.style";
 
-function CardList({ list }) {
-  const renderRepo = list.map((repo) => {
+interface Props {
+  list: []
+}
+
+interface RepoType{
+  id: number,
+  name: string,
+  owner: {
+    avatar_url: string
+  },
+  url: string,
+  language: string,
+  description: string,
+  forks: number
+}
+
+function CardList({list }:Props) {
+  const renderRepo = list.map((repo:RepoType) => {
     return (
       <CardListContainer key={repo.id}>
         <NameImgContainer>
